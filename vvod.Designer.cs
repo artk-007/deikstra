@@ -108,7 +108,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "vvod";
-            this.Opacity = 0.7D;
+            this.Opacity = 0.95D;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "vvod";
