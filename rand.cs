@@ -7,15 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace deikstra
 {
 
     public partial class rand : Form
     {
-        int[,] Matrix = new int[deikstra.Size.N, deikstra.Size.N];
 
 
+        
         public rand()
         {
             InitializeComponent();
@@ -28,28 +30,28 @@ namespace deikstra
                 {
                     if (i == j)
                     {
-                        Matrix[i,j] = 0;
+                        deikstra.Size.Matrix[i,j] = 0;
                     }
                     if (i < j)
                     {
                         if (rand.Next(0, 10) > 4)
                         {
-                            Matrix[i,j] = rand.Next(0, 10);
+                            deikstra.Size.Matrix[i,j] = rand.Next(0, 10);
                             if (rand.Next(0, 10) > 4)
-                                Matrix[j,i] = 0;
+                                deikstra.Size.Matrix[j,i] = 0;
                             else
-                                Matrix[j,i] = Matrix[i,j];
+                                deikstra.Size.Matrix[j,i] = deikstra.Size.Matrix[i,j];
                         }
                         else
                             if (rand.Next(0, 10) > 4)
                         {
-                            Matrix[j,i] = rand.Next(0, 10);
-                            Matrix[i,j] = 0;
+                            deikstra.Size.Matrix[j,i] = rand.Next(0, 10);
+                            deikstra.Size.Matrix[i,j] = 0;
                         }
                         else
                         {
-                            Matrix[i,j] = 0;
-                            Matrix[j,i] = 0;
+                            deikstra.Size.Matrix[i,j] = 0;
+                            deikstra.Size.Matrix[j,i] = 0;
                         }
                     }
                 }
@@ -62,15 +64,15 @@ namespace deikstra
                 {
                     if (i == j)
                     {
-                        Matrix[i ,j] = 0;
+                        deikstra.Size.Matrix[i ,j] = 0;
                     }
                     if (i < j)
                     {
                         if (rand.Next(0, 10) > 4)
-                            Matrix[i,j] = rand.Next(0, 10);
+                            deikstra.Size.Matrix[i,j] = rand.Next(0, 10);
                         else
-                            Matrix[i,j] = 0;
-                        Matrix[j ,i] = Matrix[i ,j];
+                            deikstra.Size.Matrix[i,j] = 0;
+                        deikstra.Size.Matrix[j ,i] = deikstra.Size.Matrix[i ,j];
                     }
                 }
         }
@@ -82,12 +84,12 @@ namespace deikstra
                 {
                     if (i == j)
                     {
-                        Matrix[i,j] = 0;
+                        deikstra.Size.Matrix[i,j] = 0;
                     }
                     if (i < j)
                     {
-                        Matrix[i ,j] = rand.Next(0, 2);
-                        Matrix[j,i] = Matrix[i,j];
+                        deikstra.Size.Matrix[i ,j] = rand.Next(0, 2);
+                        deikstra.Size.Matrix[j,i] = deikstra.Size.Matrix[i,j];
                     }
                 }
         }
@@ -99,28 +101,28 @@ namespace deikstra
                 {
                     if (i == j)
                     {
-                        Matrix[i ,j] = 0;
+                        deikstra.Size.Matrix[i ,j] = 0;
                     }
                     if (i < j)
                     {
                         if (rand.Next(0, 10) > 4)
                         {
-                            Matrix[i ,j] = rand.Next(0, 2);
+                            deikstra.Size.Matrix[i ,j] = rand.Next(0, 2);
                             if (rand.Next(0, 10) > 4)
-                                Matrix[j ,i] = 0;
+                                deikstra.Size.Matrix[j ,i] = 0;
                             else
-                                Matrix[j ,i] = Matrix[i ,j];
+                                deikstra.Size.Matrix[j ,i] = deikstra.Size.Matrix[i ,j];
                         }
                         else
                             if (rand.Next(0, 10) > 4)
                         {
-                            Matrix[j,i] = rand.Next(0, 2);
-                            Matrix[i,j] = 0;
+                            deikstra.Size.Matrix[j,i] = rand.Next(0, 2);
+                            deikstra.Size.Matrix[i,j] = 0;
                         }
                         else
                         {
-                            Matrix[i,j] = 0;
-                            Matrix[j,i] = 0;
+                            deikstra.Size.Matrix[i,j] = 0;
+                            deikstra.Size.Matrix[j,i] = 0;
                         }
                     }
                 }
@@ -159,14 +161,14 @@ namespace deikstra
                 default:
                     break;
             }
-            dataGridView1.RowCount = Matrix.GetLength(0);
-            dataGridView1.ColumnCount = Matrix.GetLength(1);
-            for (int i = 0; i < Matrix.GetLength(0); i++)
+            dataGridView1.RowCount = deikstra.Size.Matrix.GetLength(0);
+            dataGridView1.ColumnCount = deikstra.Size.Matrix.GetLength(1);
+            for (int i = 0; i < deikstra.Size.Matrix.GetLength(0); i++)
             {
-                for (int j = 0; j < Matrix.GetLength(1); j++)
+                for (int j = 0; j < deikstra.Size.Matrix.GetLength(1); j++)
                 {
                     //пишем значения из массива в ячейки контролла
-                    dataGridView1.Rows[i].Cells[j].Value = Matrix[i, j];
+                    dataGridView1.Rows[i].Cells[j].Value = deikstra.Size.Matrix[i, j];
                 }
             }
         }
@@ -198,6 +200,55 @@ namespace deikstra
         private void button_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            nah nah = new nah();
+            nah.ShowDialog();
+            textBox1.Text = "";
+            //окно со стартовой вершиной и алгоритм в отдельную функцию
+            
+            for (int i = 0; i < deikstra.Size.N; i++)
+            {
+                textBox1.Text += String.Format("до вершины{0} длинна пути{1} ", i+1, Program.d[i])+ '\r' + '\n';
+                
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Size Size = new Size();
+            Size.Show();
+        }
+
+        void SaveTable(DataGridView What_save)
+        {
+            
+            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.xlsx", DateTime.Now) ;
+
+            Excel.Application excelapp = new Excel.Application();
+            Excel.Workbook workbook = excelapp.Workbooks.Add();
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+
+            for (int i = 1; i < What_save.RowCount + 1; i++)
+            {
+                for (int j = 1; j < What_save.ColumnCount + 1; j++)
+                {
+                    worksheet.Rows[i].Columns[j] = What_save.Rows[i - 1].Cells[j - 1].Value;
+                }
+            }
+            excelapp.AlertBeforeOverwriting = false;
+            workbook.SaveAs(path);
+            excelapp.Quit();
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SaveTable(dataGridView1);
+            MessageBox.Show("сохранено");
         }
     }
 }

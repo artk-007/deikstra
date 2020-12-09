@@ -32,6 +32,7 @@
             this.button_close = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -40,7 +41,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(63, 12);
+            this.button1.Location = new System.Drawing.Point(63, 57);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(175, 30);
             this.button1.TabIndex = 0;
@@ -54,7 +55,7 @@
             this.button_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.button_close.Location = new System.Drawing.Point(274, 1);
+            this.button_close.Location = new System.Drawing.Point(265, 7);
             this.button_close.Margin = new System.Windows.Forms.Padding(1);
             this.button_close.Name = "button_close";
             this.button_close.Size = new System.Drawing.Size(25, 25);
@@ -70,7 +71,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(63, 60);
+            this.button2.Location = new System.Drawing.Point(63, 93);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(175, 30);
             this.button2.TabIndex = 2;
@@ -84,22 +85,42 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button3.Location = new System.Drawing.Point(63, 108);
+            this.button3.Location = new System.Drawing.Point(63, 129);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(175, 30);
             this.button3.TabIndex = 3;
             this.button3.Text = "Загрузка из файла";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.DimGray;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.Window;
+            this.textBox1.HideSelection = false;
+            this.textBox1.Location = new System.Drawing.Point(12, 10);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ShortcutsEnabled = false;
+            this.textBox1.Size = new System.Drawing.Size(180, 22);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.TabStop = false;
+            this.textBox1.Text = "Выбирете режим";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // vvod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.DimGray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.CausesValidation = false;
-            this.ClientSize = new System.Drawing.Size(300, 150);
+            this.ClientSize = new System.Drawing.Size(300, 170);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button_close);
@@ -113,6 +134,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "vvod";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -122,5 +144,6 @@
         private System.Windows.Forms.Button button_close;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

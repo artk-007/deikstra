@@ -13,6 +13,7 @@ namespace deikstra
     public partial class vvod : Form
     {
         public static int p1;
+        
         public vvod()
         {
             InitializeComponent();
@@ -40,6 +41,11 @@ namespace deikstra
             // Показываем новое окно
             Size.Show();
             p1 = 2;
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
 
         }
     }

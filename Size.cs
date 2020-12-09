@@ -14,8 +14,8 @@ namespace deikstra
     public partial class Size : Form
     {
         public static int N=0;
+        public static int[,] Matrix;
 
-        
 
         public Size()
         {
@@ -46,6 +46,7 @@ namespace deikstra
             {
                 N = Convert.ToInt32(textBox2.Text);
                 this.Hide();
+                Matrix = new int[deikstra.Size.N, deikstra.Size.N];
                 switch (deikstra.vvod.p1)
                 {
                     case 1:
@@ -67,6 +68,40 @@ namespace deikstra
         private void textBox2_Click(object sender, EventArgs e)
         {
             textBox2.Text = "";
+        }
+
+        private void button_close_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            vvod vvod = new vvod();
+            vvod.Show();
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+
+            if (!Char.IsDigit(number) && number != 8)
+            {
+                e.Handled = true;
+            }
+            
+
+        }
+
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+
+                button1_Click(this, EventArgs.Empty);
+
+            }
         }
     }
 }
