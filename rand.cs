@@ -208,11 +208,13 @@ namespace deikstra
             nah.ShowDialog();
             textBox1.Text = "";
             //окно со стартовой вершиной и алгоритм в отдельную функцию
-            
+            if (Program.begin_index >-1)
             for (int i = 0; i < deikstra.Size.N; i++)
             {
-                textBox1.Text += String.Format("до вершины{0} длинна пути{1} ", i+1, Program.d[i])+ '\r' + '\n';
-                
+                if (Program.d[i] != 10000)
+                textBox1.Text += String.Format("до вершины: {0} длинна пути: {1} ", i+1, Program.d[i])+ '\r' + '\n';
+                else
+                    textBox1.Text += String.Format("до вершины: {0} нет пути", i + 1) + '\r' + '\n';
             }
         }
 
@@ -223,10 +225,10 @@ namespace deikstra
             Size.Show();
         }
 
-        void SaveTable(DataGridView What_save)
+         void SaveTable(DataGridView What_save)
         {
             
-            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.xlsx", DateTime.Now) ;
+            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.xlsx", DateTime.Now.Second) ;
 
             Excel.Application excelapp = new Excel.Application();
             Excel.Workbook workbook = excelapp.Workbooks.Add();
@@ -239,7 +241,12 @@ namespace deikstra
                     worksheet.Rows[i].Columns[j] = What_save.Rows[i - 1].Cells[j - 1].Value;
                 }
             }
-            excelapp.AlertBeforeOverwriting = false;
+
+            for (int i = 1; i < What_save.RowCount + 1; i++)
+            {
+                worksheet.Rows[i].Columns[What_save.ColumnCount + 2] = textBox1.Lines[i-1];
+            }
+                excelapp.AlertBeforeOverwriting = false;
             workbook.SaveAs(path);
             excelapp.Quit();
 

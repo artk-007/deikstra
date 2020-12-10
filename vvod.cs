@@ -48,5 +48,13 @@ namespace deikstra
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            fail fail = new fail();
+            fail.Show();
+            p1 = 3;
+        }
     }
 }

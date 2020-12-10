@@ -10,7 +10,7 @@ namespace deikstra
     {
         
         public static int[] d;
-        public static int begin_index;
+        public static int begin_index = -1;
         public static void alg()
         {
             d = new int[deikstra.Size.N]; // минимальное расстояние
