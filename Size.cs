@@ -37,12 +37,8 @@ namespace deikstra
 
         private void button1_Click(object sender, EventArgs e)
         {
-           if (textBox2.Text == "" || textBox2.Text == "Ошибка")
-            {
-                textBox2.Text = "Ошибка";
-                
-            }
-            if (textBox2.Text != "" && textBox2.Text != "Ошибка")
+
+            if (textBox2.Text != "" && Convert.ToInt32(textBox2.Text)!= 0)
             {
                 N = Convert.ToInt32(textBox2.Text);
                 this.Hide();
@@ -62,8 +58,11 @@ namespace deikstra
                 }
 
             }
-                
+            else { 
+                MessageBox.Show("Введите размер графа");
+            textBox2.Text = "";
         }
+    }
 
         private void textBox2_Click(object sender, EventArgs e)
         {

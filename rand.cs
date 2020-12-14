@@ -127,9 +127,11 @@ namespace deikstra
                     }
                 }
         }
+        private bool b1=false;
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            b1 = true;
+            textBox1.Text = "";
             
             switch (checkedListBox1.SelectedIndex)
             {
@@ -172,7 +174,7 @@ namespace deikstra
                 }
             }
         }
-
+        
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (checkedListBox1.CheckedItems.Count > 1)
@@ -183,6 +185,7 @@ namespace deikstra
                 }
                 checkedListBox1.SetItemChecked(checkedListBox1.SelectedIndex, true);
             }
+            
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -204,57 +207,66 @@ namespace deikstra
 
         private void button2_Click(object sender, EventArgs e)
         {
-            nah nah = new nah();
-            nah.ShowDialog();
-            textBox1.Text = "";
-            //окно со стартовой вершиной и алгоритм в отдельную функцию
-            if (Program.begin_index >-1)
-            for (int i = 0; i < deikstra.Size.N; i++)
+            if (b1 == true)
             {
-                if (Program.d[i] != 10000)
-                textBox1.Text += String.Format("до вершины: {0} длинна пути: {1} ", i+1, Program.d[i])+ '\r' + '\n';
-                else
-                    textBox1.Text += String.Format("до вершины: {0} нет пути", i + 1) + '\r' + '\n';
+                nah nah = new nah();
+                nah.ShowDialog();
+                textBox1.Text = "";
+                //окно со стартовой вершиной и алгоритм в отдельную функцию
+                if (Program.begin_index > -1)
+                    for (int i = 0; i < deikstra.Size.N; i++)
+                    {
+                        if (Program.d[i] != 10000)
+                            textBox1.Text += String.Format("до вершины: {0} длинна пути: {1} ", i + 1, Program.d[i]) + '\r' + '\n';
+                        else
+                            textBox1.Text += String.Format("до вершины: {0} нет пути", i + 1) + '\r' + '\n';
+                    }
             }
+            else
+                MessageBox.Show("Сгенерируйте граф");
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Size Size = new Size();
-            Size.Show();
+            vvod vvod = new vvod();
+            vvod.Show();
         }
 
-         void SaveTable(DataGridView What_save)
+         public static void SaveTable(DataGridView What_save, TextBox textBox)
         {
             
-            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.xlsx", DateTime.Now.Second) ;
+            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.{1}.{2} {3}.{4}.{5}.xlsx", DateTime.Now.Day, DateTime.Now.Month, DateTime.Now.Year, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second) ;
 
             Excel.Application excelapp = new Excel.Application();
             Excel.Workbook workbook = excelapp.Workbooks.Add();
             Excel.Worksheet worksheet = workbook.ActiveSheet;
-
+            worksheet.Rows[1].Columns[1] = What_save.RowCount;
             for (int i = 1; i < What_save.RowCount + 1; i++)
             {
-                for (int j = 1; j < What_save.ColumnCount + 1; j++)
+                for (int j = 2; j < What_save.ColumnCount + 2; j++)
                 {
-                    worksheet.Rows[i].Columns[j] = What_save.Rows[i - 1].Cells[j - 1].Value;
+                    worksheet.Rows[i].Columns[j] = What_save.Rows[i - 1].Cells[j - 2].Value;
                 }
             }
-
-            for (int i = 1; i < What_save.RowCount + 1; i++)
+            if (textBox.Text != "")
             {
-                worksheet.Rows[i].Columns[What_save.ColumnCount + 2] = textBox1.Lines[i-1];
+                for (int i = 1; i < What_save.RowCount + 1; i++)
+                {
+                    worksheet.Rows[i].Columns[What_save.ColumnCount + 3] = textBox.Lines[i - 1];
+                }
             }
                 excelapp.AlertBeforeOverwriting = false;
             workbook.SaveAs(path);
             excelapp.Quit();
+            GC.Collect();
 
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SaveTable(dataGridView1);
+            SaveTable(dataGridView1, textBox1);
             MessageBox.Show("сохранено");
         }
     }

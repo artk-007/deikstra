@@ -36,12 +36,13 @@ namespace deikstra
         private void button3_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Size Size = new Size();
-            Size.Show();
+            vvod vvod = new vvod();
+            vvod.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 for (int j = 0; j < dataGridView1.ColumnCount; j++)
@@ -69,38 +70,13 @@ namespace deikstra
                         textBox1.Text += String.Format("до вершины: {0} нет пути", i + 1) + '\r' + '\n';
                 }
         }
-        void SaveTable(DataGridView What_save)
-        {
-
-            string path = System.IO.Directory.GetCurrentDirectory() + @"\" + String.Format("Save_Excel{0}.xlsx", DateTime.Now.Second);
-
-            Excel.Application excelapp = new Excel.Application();
-            Excel.Workbook workbook = excelapp.Workbooks.Add();
-            Excel.Worksheet worksheet = workbook.ActiveSheet;
-
-            for (int i = 1; i < What_save.RowCount + 1; i++)
-            {
-                for (int j = 1; j < What_save.ColumnCount + 1; j++)
-                {
-                    worksheet.Rows[i].Columns[j] = What_save.Rows[i - 1].Cells[j - 1].Value;
-                }
-            }
-
-            for (int i = 1; i < What_save.RowCount + 1; i++)
-            {
-                worksheet.Rows[i].Columns[What_save.ColumnCount + 2] = textBox1.Lines[i - 1];
-            }
-            excelapp.AlertBeforeOverwriting = false;
-            workbook.SaveAs(path);
-            excelapp.Quit();
-
-        }
+        
         private void button4_Click(object sender, EventArgs e)
         {
 
-            SaveTable(dataGridView1);
+            rand.SaveTable(dataGridView1, textBox1);
             MessageBox.Show("сохранено");
-
+            
         }
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

@@ -24,22 +24,23 @@ namespace deikstra
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text == "" || textBox2.Text == "Ошибка")
-            {
-                textBox2.Text = "Ошибка";
 
-            }
-            if (textBox2.Text != "" && textBox2.Text != "Ошибка")
+            if (textBox2.Text != "" && Convert.ToInt32(textBox2.Text) != 0 && Convert.ToInt32(textBox2.Text) <= deikstra.Size.N)
             {
-                
-                Program.begin_index = Convert.ToInt32(textBox2.Text) -1;
+
+                Program.begin_index = Convert.ToInt32(textBox2.Text) - 1;
                 Program.alg();
                 this.Hide();
+            }
+            else {
+                MessageBox.Show("Введите вершину для начала обхода");
+                textBox2.Text = ""; 
             }
         }
 
         private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             char number = e.KeyChar;
 
             if (!Char.IsDigit(number) && number != 8)
@@ -50,6 +51,7 @@ namespace deikstra
 
         private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Enter)
             {
 
