@@ -51,6 +51,7 @@ namespace deikstra
                     deikstra.Size.Matrix[i, j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[j].Value);
                 }
             }
+            MessageBox.Show("Успешно");
         }
 
 
